@@ -1,23 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-// 3️⃣ How can you conditionally render content inside a functional component?
-// 💡 Create a component that checks if a user is logged in (using a boolean prop) and displays either "Welcome, User!" or "Please log in."
-
-function WelcomeMessage({isLoggedIn}){
-  return(
-    <div>
-      {isLoggedIn ? <h2>Welcome, User!</h2> : <h2>Please log in.</h2>}
-    </div>
-  )
-}
+// How can you display a "Loading..." message while fetching data?
+// 💡 Create a component that initially shows "Loading..." and, after 3 seconds, displays "Data Loaded!".
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+
+// Why Use useEffect?
+// useEffect is necessary here because we need to perform a side effect
+//  (waiting for 3 seconds and then updating the state). 
+// Without useEffect, the state update (setTimeout) would run on every re-render, causing an infinite loop.
+  useEffect(function(){
+     setTimeout(function(){
+      setLoading(false)
+     },3000)
+  },[]);
+
   return(
   <div>
-    <WelcomeMessage isLoggedIn={false} />
+    {loading ? <h1>Loading...</h1>: <h1>Data Loaded</h1>}
   </div>
   ) 
 
