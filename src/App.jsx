@@ -3,23 +3,23 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-// How do you use useState inside a functional component to store and update a counter?
-// 💡 Implement a simple counter component with a "Increase" button that updates the counter using useState.
+// 3️⃣ How can you conditionally render content inside a functional component?
+// 💡 Create a component that checks if a user is logged in (using a boolean prop) and displays either "Welcome, User!" or "Please log in."
 
-
+function WelcomeMessage({isLoggedIn}){
+  return(
+    <div>
+      {isLoggedIn ? <h2>Welcome, User!</h2> : <h2>Please log in.</h2>}
+    </div>
+  )
+}
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  function increaseCount(){
-    setCount(count+1)
-  }
-
   return(
   <div>
-    <h2>Counter: {count}</h2>
-    <button onClick={increaseCount}>Increase Counter</button>
-  </div>) 
+    <WelcomeMessage isLoggedIn={false} />
+  </div>
+  ) 
 
 
 
